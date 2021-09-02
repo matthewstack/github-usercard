@@ -35,13 +35,11 @@ import axios from 'axios'
 
 axios.get('http://api.github.com/users/matthewstack')
 .then(res => {
-  console.log(res.data)
-  console.log(res.data.followers_url)
   document.querySelector('.cards').appendChild(githubCard(res.data))
+  // Getting URL that lists followers
   return axios.get(res.data.followers_url)
 })
 .then(res => {
-  console.log(res.data)
   const followerData = res.data
   followerData.forEach(follower => {
     axios.get(follower.url)
@@ -98,7 +96,6 @@ followersLooper(followersArray)
     </div>
 */
 const githubCard = (obj => {
-  // const outerContainer = document.createElement('div')
   const cardContainer = document.createElement('div')
   const image = document.createElement('img')
   const cardInfo = document.createElement('div')
@@ -112,8 +109,6 @@ const githubCard = (obj => {
   const bio = document.createElement('p')
   const githubChart = document.createElement('img')
 
-  // outerContainer.appendChild(cardContainer)
-  // outerContainer.
 
   cardContainer.appendChild(image);
   cardContainer.appendChild(cardInfo);
